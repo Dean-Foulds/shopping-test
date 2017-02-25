@@ -12,7 +12,7 @@ describe Checkout do
       offers = Array(BulkPricingRule.new("001", 9.25, 1, 9.25))
       offers = Array(BulkPricingRule.new("002", 45.00, 1, 45.00))
       offers = Array(BulkPricingRule.new("003", 19.95, 1, 19.95))
-      checkout = Checkout.new( offers )
+      checkout = Checkout.new( offers, 0.01, 60 )
       items.each do |i|
         checkout.scan i
       end
@@ -28,7 +28,7 @@ describe Checkout do
       end  
         items << Item.new( "003", 19.95 )
         offers = Array(BulkPricingRule.new("001", 9.25, 2, 17.0) )
-      checkout = Checkout.new(offers)
+      checkout = Checkout.new(offers, 0.01, 60)
       items.each do |i|
         checkout.scan i
       end
@@ -45,11 +45,11 @@ describe '#total' do
         items << Item.new( "003", 19.95 )
         items << Item.new( "002", 45.00 )
         offers = Array(BulkPricingRule.new("001", 9.25, 2, 17.0) )
-      checkout = Checkout.new(offers)
+      checkout = Checkout.new(offers, 0.01, 60)
       items.each do |i|
         checkout.scan i
       end
-      expect(checkout.total).to be(( 8.50 + 19.95 + 8.50 + 45.00) - ( 45.00 + 8.50 + 19.95 + 8.50) * 0.01)
+      expect(checkout.total).to be(( 8.50 + 19.95 + 8.50 + 45.00) - ( 8.50 + 19.95 + 8.50 + 45.00) * 0.01)
     end
   end
 end
