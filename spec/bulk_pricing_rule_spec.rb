@@ -5,7 +5,7 @@ describe BulkPricingRule do
   context 'buy 2 or more Lavender Heart for special price' do
     let(:item_price) { 9.25 }
     let(:package_price) { 34.0 }
-    let(:subject) {BulkPricingRule.new "special item name", item_price, 4, package_price}
+    let(:subject) {BulkPricingRule.new "Lavender Heart", item_price, 4, package_price}
 
     describe '#price_for' do
       it "calculates correct price for 4 items" do
